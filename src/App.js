@@ -1,24 +1,58 @@
-import logo from './logo.svg';
-import './App.css';
+import PokemonList from "./components/PokemonList";
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import Navigation from "./components/Navigation";
 
 function App() {
+  const [pokemon, setPokemon] = useState([]);
+  const [pokemonSprite, setPokemonSprite] = useState("");
+  const [currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon");
+  const [nextPageUrl, setNextPageUrl] = useState();
+  const [prevPageUrl, setPrevPageUrl] = useState();
+  const [loading, setLoading] = useState(true);
+
+
+  
+
+
+  useEffect(() => {
+    setLoading(true)
+    let cancel
+    axios.get(currentPageUrl, {
+      cancelToken: new axios.CancelToken(c => cancel = c)
+    }).then(response => {
+      setLoading(false)
+      setNextPageUrl(response.data.next)
+      setPrevPageUrl(response.data.previous) 
+      setPokemon(response.data.sprites.map(poke => poke.name))
+
+      
+    })
+
+    return () => { cancel(); }
+    //cancelToken serve para garantir que a aplicação não vai carregar dados de requests antigos e sobrepor novos requests.
+
+  }, [currentPageUrl])
+  //Toda vez que [currentPageUrl] for modificado, faça o código axios.get acima.
+
+  if (loading) return "Loading..."
+
+  function gotoNextPage() {
+    setCurrentPageUrl(nextPageUrl)
+  }
+
+  function gotoPrevPage() {
+    setCurrentPageUrl(prevPageUrl)
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <PokemonList pokemon={pokemon}/>
+      <Navigation
+        gotoNextPage={nextPageUrl ? gotoNextPage : null}
+        gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
+      />
+    </>
   );
 }
 
