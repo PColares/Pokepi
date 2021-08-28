@@ -1,2 +1,4 @@
 # Pokepi
-React project - Study on how to manipulate API. https://pokeapi.co/
+Development of a dynamic Pokédex with https://pokeapi.co/.
+
+Study on how to manipulate API's with React.js.
