@@ -1,0 +1,111 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+.margin-all {
+  margin: 15px;
+}
+.flex-parent {
+  display: flex;
+  flex-direction: column;
+  border: solid 3px black;
+  border-radius: 6px;
+  height: 100%;
+  width: 40%;
+  min-width: 50%;
+
+  padding-bottom: 10px;
+}
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  text-transform: capitalize;
+  padding: 10px 15px;
+}
+
+.name {
+  font-weight: bold;
+  /* background-color: lightcoral; */
+}
+
+.type {
+  font-weight: bold;
+  font-size: 20px;
+  /* background-color: lightseagreen; */
+}
+
+.flex-parent img {
+  border: solid 2px black;
+  border-radius: 6px;
+  width: 95%;
+  margin-left: 2.5%;
+  background-color: lightblue;
+}
+
+.description {
+  border: solid 2px black;
+  border-radius: 6px;
+  width: 95%;
+  margin: 2.5%;
+  padding: 15px 10px;
+  background-color: bisque;
+  height: 100px;
+  text-align: left;
+}
+
+.moves {
+  font-weight: bold;
+  text-align: left;
+  text-transform: capitalize;
+  margin-left: 2.5%;
+  padding-left: 7%;
+  columns: 2;
+  width: 95%;
+  height: 80px;
+  justify-content: center;
+  background-color: burlywood;
+  border: solid 2px black;
+  border-radius: 6px;
+}
+
+.moves p {
+  padding: 10px;
+}
+
+.button {
+  display: flex;
+  justify-content: space-between;
+  width: 50%;
+  padding-top: 15px;
+}
+.pokeID {
+  padding-top: 5px;
+  font-size: 28px;
+  width: 80px;
+  height: 50px;
+  text-align: center;
+  border-radius: 10px;
+  border: solid 3px black;
+  box-shadow: 2px 2px 5px #0000005b;
+  background-color: white;
+}
+
+button {
+  width: 100px;
+  height: 50px;
+  font-weight: bold;
+  border-radius: 10px;
+  border: solid 3px black;
+  background-color: white;
+  box-shadow: 2px 2px 5px #0000005b;
+}
+button:hover {
+  background: #fafafa86;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+button:active {
+  transform: scale(0.9);
+}

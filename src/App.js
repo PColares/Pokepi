@@ -1,59 +1,53 @@
-import PokemonList from "./components/PokemonList";
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import Navigation from "./components/Navigation";
+import PokeCard from './components/pokeCard';
+import Navigation from './components/Navigation'
 
 function App() {
-  const [pokemon, setPokemon] = useState([]);
-  const [pokemonSprite, setPokemonSprite] = useState("");
-  const [currentPageUrl, setCurrentPageUrl] = useState("https://pokeapi.co/api/v2/pokemon");
-  const [nextPageUrl, setNextPageUrl] = useState();
-  const [prevPageUrl, setPrevPageUrl] = useState();
-  const [loading, setLoading] = useState(true);
 
+  const [pokemonID, setPokemonID] = useState(1)
+  const [pokemonData, setPokemonData] = useState([])
+  const [pokemonText, setPokemonText] = useState([])
+  const [pokemonImg, setPokemonImg] = useState([])
+  const [pokemonType, setPokemonType] = useState([])
+  const [pokemonMoves, setPokemonMoves] = useState([])
 
-  
-
+  const pokeInfoUrl = `https://pokeapi.co/api/v2/pokemon/${pokemonID}`
+  const pokeTextUrl = `https://pokeapi.co/api/v2/pokemon-species/${pokemonID}`
 
   useEffect(() => {
-    setLoading(true)
-    let cancel
-    axios.get(currentPageUrl, {
-      cancelToken: new axios.CancelToken(c => cancel = c)
-    }).then(response => {
-      setLoading(false)
-      setNextPageUrl(response.data.next)
-      setPrevPageUrl(response.data.previous) 
-      setPokemon(response.data.sprites.map(poke => poke.name))
+    const getPokemonInfo = axios.get(pokeInfoUrl);
+    const getPokemonText = axios.get(pokeTextUrl);
 
-      
-    })
+    axios.all([getPokemonInfo, getPokemonText]).then(
+      axios.spread((...allData) => {
+        setPokemonData(allData[0].data);
+        setPokemonImg(allData[0].data.sprites.other["official-artwork"].front_default);
+        setPokemonType(allData[0].data.types);
+        setPokemonMoves(allData[0].data.moves);
+        setPokemonText(allData[1].data.flavor_text_entries);
+      })
+    );
+  }, [pokeInfoUrl, pokeTextUrl])
 
-    return () => { cancel(); }
-    //cancelToken serve para garantir que a aplicação não vai carregar dados de requests antigos e sobrepor novos requests.
-
-  }, [currentPageUrl])
-  //Toda vez que [currentPageUrl] for modificado, faça o código axios.get acima.
-
-  if (loading) return "Loading..."
-
-  function gotoNextPage() {
-    setCurrentPageUrl(nextPageUrl)
-  }
-
-  function gotoPrevPage() {
-    setCurrentPageUrl(prevPageUrl)
-  }
 
   return (
-    <>
-      <PokemonList pokemon={pokemon}/>
-      <Navigation
-        gotoNextPage={nextPageUrl ? gotoNextPage : null}
-        gotoPrevPage={prevPageUrl ? gotoPrevPage : null}
+    <div className="margin-all">
+      <PokeCard
+        name={pokemonData.name}
+        img={pokemonImg}
+        types={pokemonType}
+        text={pokemonText}
+        moves={pokemonMoves}
       />
-    </>
+
+      {/* Botões */}
+      <Navigation
+        id={pokemonID}
+        setId={setPokemonID}
+        displayID={pokemonData.id}
+      />
+    </div>
   );
 }
-
 export default App;
