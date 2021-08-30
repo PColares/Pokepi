@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import PokeCard from './components/pokeCard';
 import Navigation from './components/Navigation'
-
 function App() {
 
   const [pokemonID, setPokemonID] = useState(1)
@@ -30,9 +29,8 @@ function App() {
     );
   }, [pokeInfoUrl, pokeTextUrl])
 
-
   return (
-    <div className="margin-all">
+    <div className="flex-parent">
       <PokeCard
         name={pokemonData.name}
         img={pokemonImg}
@@ -40,7 +38,6 @@ function App() {
         text={pokemonText}
         moves={pokemonMoves}
       />
-
       {/* Botões */}
       <Navigation
         id={pokemonID}

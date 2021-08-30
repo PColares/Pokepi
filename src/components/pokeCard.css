@@ -4,18 +4,25 @@
   padding: 0;
 }
 .margin-all {
-  margin: 15px;
+  margin: 10px;
 }
 .flex-parent {
   display: flex;
   flex-direction: column;
+}
+.pokeBorder {
+  display: flex;
+  flex-direction: column;
   border: solid 3px black;
+  background-color: rgba(144, 238, 144, 0.631);
   border-radius: 6px;
-  height: 100%;
-  width: 40%;
-  min-width: 50%;
-
   padding-bottom: 10px;
+}
+.pokeBorder .sprite {
+  border: solid 2px black;
+  border-radius: 6px;
+  margin: 0 2.5% 2.5% 2.5%;
+  background-color: rgba(173, 216, 230, 0.7);
 }
 .flex-row {
   display: flex;
@@ -36,20 +43,11 @@
   /* background-color: lightseagreen; */
 }
 
-.flex-parent img {
-  border: solid 2px black;
-  border-radius: 6px;
-  width: 95%;
-  margin-left: 2.5%;
-  background-color: lightblue;
-}
-
 .description {
   border: solid 2px black;
   border-radius: 6px;
-  width: 95%;
-  margin: 2.5%;
-  padding: 15px 10px;
+  margin: 0 2.5% 2.5% 2.5%;
+  padding: 2.5% 2.5%;
   background-color: bisque;
   height: 100px;
   text-align: left;
@@ -59,11 +57,10 @@
   font-weight: bold;
   text-align: left;
   text-transform: capitalize;
-  margin-left: 2.5%;
-  padding-left: 7%;
+  margin: 0 2.5% 0 2.5%;
+  padding: 1.5% 4.5%;
   columns: 2;
-  width: 95%;
-  height: 80px;
+  height: 6em;
   justify-content: center;
   background-color: burlywood;
   border: solid 2px black;
@@ -77,24 +74,19 @@
 .button {
   display: flex;
   justify-content: space-between;
-  width: 50%;
-  padding-top: 15px;
+  padding-top: 10px;
+  font-size: 32px;
 }
 .pokeID {
-  padding-top: 5px;
-  font-size: 28px;
-  width: 80px;
-  height: 50px;
   text-align: center;
   border-radius: 10px;
   border: solid 3px black;
   box-shadow: 2px 2px 5px #0000005b;
   background-color: white;
+  min-width: 50px;
 }
 
 button {
-  width: 100px;
-  height: 50px;
   font-weight: bold;
   border-radius: 10px;
   border: solid 3px black;
@@ -108,4 +100,110 @@ button:hover {
 }
 button:active {
   transform: scale(0.9);
+}
+
+@media screen and (min-width: 1600px) {
+  /* body {
+    background-color: lightcyan;
+  } */
+
+  .flex-parent {
+    margin: 1.5% 39%;
+  }
+
+  .moves {
+    font-size: 14px;
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 1200px) and (max-width: 1600px) {
+  /* body {
+    background-color: lightcyan;
+  } */
+
+  .flex-parent {
+    margin: 1.5% 31%;
+  }
+
+  .moves {
+    font-size: 14px;
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1200px) {
+  /* body {
+    background-color: lightslategray;
+  } */
+
+  .flex-parent {
+    margin: 1.5% 30%;
+  }
+  .moves {
+    padding: 0;
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  /* body {
+    background-color: lightpink;
+  } */
+
+  .flex-parent {
+    margin: 1.5% 26%;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 768px) {
+  /* body {
+    background-color: lightgrey;
+  } */
+
+  .flex-parent {
+    margin: 2.5% 18%;
+  }
+
+  .moves {
+    font-size: 11px;
+    padding: 0;
+  }
+  .button {
+    margin: 0 5%;
+  }
+}
+
+@media screen and (max-width: 480px) and (min-width: 306px) {
+  /* body{
+    background-color:lightyellow;
+  } */
+  .flex-parent {
+    margin: 2.5% 14%;
+  }
+  .moves {
+    font-size: 11px;
+    padding: 0;
+  }
+  .type {
+    font-size: 14px;
+  }
+  .name {
+    font-size: 14px;
+  }
+}
+
+@media screen and (max-width: 306px) {
+  .flex-parent {
+    margin: 2.5% 10%;
+  }
+  .moves {
+    font-size: 11px;
+    height: auto;
+  }
+  .type {
+    font-size: 12px;
+  }
+  .name {
+    font-size: 12px;
+  }
 }
