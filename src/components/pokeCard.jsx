@@ -1,5 +1,6 @@
 import React from 'react'
 import './pokeCard.css'
+import ptBr from '../Settings/pt-br'
 
 const PokeCard = ({ name, img, types, text, moves }) => {
 
@@ -15,7 +16,69 @@ const PokeCard = ({ name, img, types, text, moves }) => {
                 <div className="type">
 
                     <p>{types.map((tipo, index) => {
-                        return (<span key={`tipo-${index}`}>{tipo.type.name} </span>)
+                        switch (tipo.type.name) {
+                            case "grass":
+                                tipo.type.name = ptBr.Grass;
+                                break;
+                            case "fire":
+                                tipo.type.name = ptBr.Fire;
+                                break;
+                            case "water":
+                                tipo.type.name = ptBr.Water;
+                                break;
+                            case "bug":
+                                tipo.type.name = ptBr.Bug;
+                                break;
+                            case "normal":
+                                tipo.type.name = ptBr.Normal;
+                                break;
+                            case "poison":
+                                tipo.type.name = ptBr.Poison;
+                                break;
+                            case "electric":
+                                tipo.type.name = ptBr.Electric;
+                                break;
+                            case "ground":
+                                tipo.type.name = ptBr.Ground;
+                                break;
+                            case "fighting":
+                                tipo.type.name = ptBr.Fighting;
+                                break;
+                            case "psychic":
+                                tipo.type.name = ptBr.Psychic;
+                                break;
+                            case "rock":
+                                tipo.type.name = ptBr.Rock;
+                                break;
+                            case "flying":
+                                tipo.type.name = ptBr.Flying;
+                                break;
+                            case "ghost":
+                                tipo.type.name = ptBr.Ghost;
+                                break;
+                            case "ice":
+                                tipo.type.name = ptBr.Ice;
+                                break;
+                            case "dragon":
+                                tipo.type.name = ptBr.Dragon;
+                                break;
+                            case "steel":
+                                tipo.type.name = ptBr.Steel;
+                                break;
+                            case "dark":
+                                tipo.type.name = ptBr.Dark;
+                                break;
+                            case "fairy":
+                                tipo.type.name = ptBr.Fairy;
+                                break;
+                            default:
+                                break;
+                        }
+                        return (
+
+                            <span key={`tipo-${index}`}>{tipo.type.name} </span>
+
+                        )
                     })}
                     </p>
                 </div>
